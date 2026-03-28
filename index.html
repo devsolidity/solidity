@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solidity Meme Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:#050505; color:#fff; overflow-x:hidden; }
+    h1,h2,h3 { font-family:'Orbitron',sans-serif; }header { position:fixed; width:100%; top:0; display:flex; justify-content:space-between; align-items:center; padding:20px 60px; backdrop-filter:blur(10px); background:rgba(0,0,0,0.6); z-index:1000; }
+header img { height:50px; margin-right:15px; }
+header h1 { color:#00ff9f; display:inline-block; }
+nav a { margin-left:20px; color:#aaa; text-decoration:none; }
+nav a:hover { color:#00ff9f; }
+
+.hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:radial-gradient(circle,#0a0a0a,#000); opacity:0; transform:translateY(50px); transition:1s ease; }
+.hero img { height:100px; margin-bottom:20px; }
+.hero h2 { font-size:56px; }
+.hero span { color:#00ff9f; }
+.btn { margin-top:20px; padding:14px 35px; background:linear-gradient(45deg,#00ff9f,#7b3fff); border:none; border-radius:30px; font-weight:bold; cursor:pointer; transition:0.3s; }
+.btn:hover { transform:scale(1.05); box-shadow:0 0 15px #00ff9f; }
+
+.section { padding:100px 60px; text-align:center; opacity:0; transform:translateY(50px); transition:1s ease; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:40px; }
+.card { padding:30px; background:#111; border-radius:15px; transition:0.3s; position:relative; overflow:hidden; opacity:0; transform:translateY(50px); }
+.card:hover { transform:translateY(-10px); box-shadow:0 0 25px rgba(0,255,159,0.6); }
+
+.card::before {
+  content:'';
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background:linear-gradient(45deg, #00ff9f, #7b3fff, #00ff9f, #7b3fff);
+  background-size:400% 400%;
+  opacity:0; transition:0.5s; z-index:0; border-radius:15px; filter:blur(15px);
+  animation: glow 15s ease infinite;
+}
+.card:hover::before { opacity:0.4; }
+.card * { position:relative; z-index:1; }
+
+@keyframes glow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+.price { font-size:24px; color:#00ff9f; margin:15px 0; }
+.badge { position:absolute; top:-10px; right:-10px; background:#7b3fff; color:#fff; padding:5px 12px; border-radius:50px; font-size:12px; font-weight:bold; }
+
+footer { text-align:center; padding:30px; color:#666; }
+.floating { position:fixed; bottom:30px; right:30px; background:#00ff9f; color:#000; padding:15px 20px; border-radius:50px; font-weight:bold; cursor:pointer; box-shadow:0 0 20px rgba(0,255,159,0.5); z-index:999; }
+
+/* Testimonial Column Bottom Left */
+.testimonial-column { position:fixed; bottom:20px; left:0; display:flex; flex-direction:column; gap:10px; padding:10px; }
+.testimonial-column .header { background:#00ff9f; color:#000; font-weight:bold; padding:10px 15px; border-radius:15px 0 0 15px; cursor:pointer; text-align:center; box-shadow:0 0 10px rgba(0,255,159,0.5); }
+.testimonial-column .testimonial { background:#111; padding:15px 20px; border-radius:15px 0 0 15px; min-width:220px; max-width:280px; box-shadow:0 0 15px rgba(0,255,159,0.6); opacity:0; transform:translateX(-50px); transition:0.5s ease; }
+.testimonial-column .testimonial p { font-style:italic; margin-bottom:8px; font-size:14px; }
+.testimonial-column .testimonial h4 { color:#00ff9f; font-weight:bold; text-align:right; font-size:13px; }
+.testimonial-column .show { opacity:1; transform:translateX(0); }
+
+.reveal { opacity:1 !important; transform:translateY(0) !important; }
+
+  </style>
+</head>
+<body><header>
+  <img src="logo.png" alt="Solidity Meme Labs Logo">
+  <h1>Solidity Labs</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#website">Build Website</a>
+  </nav>
+</header><section class="hero reveal">
+  <img src="logo.png" alt="Solidity Meme Labs Logo">
+  <h2>Launch Your <span>Memecoin</span> or Website</h2>
+  <p>From idea to execution. We handle everything.</p>
+  <button class="btn" onclick="redirectToTelegram()">Start Now</button>
+</section><section class="section" id="services">
+  <h2>Services</h2>
+  <div class="cards">
+    <div class="card"> <h3>Token Creation</h3><p>Deploy your memecoin instantly.</p> </div>
+    <div class="card"> <h3>Liquidity Setup</h3><p>Get your token tradable fast.</p> </div>
+    <div class="card"> <h3>Marketing Boost</h3><p>We help you go viral.</p> </div>
+  </div>
+</section><section class="section" id="pricing">
+  <h2>Launch Packages</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Basic</h3>
+      <p class="price">$99</p>
+      <ul>
+        <li>Deploy token on blockchain</li>
+        <li>Tokenomics setup</li>
+        <li>Internal contract audit</li>
+        <li>Support via Telegram</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Buy Now</button>
+    </div>
+    <div class="card">
+      <div class="badge">Most Popular</div>
+      <h3>Pro</h3>
+      <p class="price">$299</p>
+      <ul>
+        <li>All features from Basic</li>
+        <li>Liquidity setup for trading</li>
+        <li>Simple branding & logo</li>
+        <li>Mini marketing boost</li>
+        <li>1x strategy consultation</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Buy Now</button>
+    </div>
+    <div class="card">
+      <h3>Ultimate</h3>
+      <p class="price">$999</p>
+      <ul>
+        <li>All features from Pro</li>
+        <li>Full marketing push</li>
+        <li>Professional branding & visuals</li>
+        <li>Advanced liquidity + staking setup</li>
+        <li>2x strategy consultations</li>
+        <li>Featured on successful launches showcase</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Buy Now</button>
+    </div>
+  </div>
+</section><section class="section" id="website">
+  <h2>Create Website</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Landing Page</h3>
+      <p class="price">$49</p>
+      <ul>
+        <li>1-page professional design</li>
+        <li>Responsive layout</li>
+        <li>Custom branding</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Order Now</button>
+    </div>
+    <div class="card">
+      <h3>Business Website</h3>
+      <p class="price">$199</p>
+      <ul>
+        <li>Up to 5 pages</li>
+        <li>SEO optimized</li>
+        <li>Custom branding & logo</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Order Now</button>
+    </div>
+    <div class="card">
+      <h3>Premium Website</h3>
+      <p class="price">$499</p>
+      <ul>
+        <li>10+ pages</li>
+        <li>Advanced SEO & marketing tools</li>
+        <li>Full branding & visuals</li>
+        <li>Analytics & optimization</li>
+      </ul>
+      <button class="btn" onclick="redirectToTelegram()">Order Now</button>
+    </div>
+  </div>
+</section><footer>
+  <p>© 2026 Solidity Meme Labs</p>
+</footer><div class="floating" onclick="redirectToTelegram()">💬 Chat Now</div><div class="testimonial-column" id="testimonialColumn">
+  <div class="header" onclick="goToTestimonialPage()">Testimonials</div>
+</div><script>
+  function redirectToTelegram(){ window.location.href = "https://t.me/devsoliditycore"; }
+  function goToTestimonialPage(){ window.location.href = '#testimonials'; }
+
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.section, .card, .hero');
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) { reveals[i].classList.add('reveal'); }
+    }
+  }
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  const testimonials = [
+    {text: 'Solidity Meme Labs made launching my token so easy and fast! Highly recommended.', author:'Alice D.'},
+    {text: 'The Pro package gave us instant visibility. Our memecoin went viral!', author:'Bob K.'},
+    {text: 'Ultimate package is worth every penny. Full support and amazing marketing.', author:'Carol M.'},
+    {text: 'Amazing service! My token launch was flawless.', author:'Dave L.'},
+    {text: 'Highly professional and easy to work with. Top-notch support.', author:'Eve M.'},
+    {text: 'My token went to the top charts in no time. Excellent work!', author:'Frank H.'},
+    {text: 'Very responsive team and amazing guidance throughout the process.', author:'Grace P.'},
+    {text: 'We reached thousands of users thanks to their marketing strategy.', author:'Hannah W.'},
+    {text: 'Solid development, clear instructions, and timely delivery.', author:'Ian K.'},
+    {text: 'Exceeded our expectations in every aspect!', author:'Julia L.'}
+  ];
+
+  let colIndex = 0;
+  const colDiv = document.getElementById('testimonialColumn');
+  function showColumnTestimonial(){
+    if(colDiv.children.length > 1){ colDiv.removeChild(colDiv.lastChild); }
+    const t = testimonials[colIndex];
+    const div = document.createElement('div');
+    div.className = 'testimonial show';
+    div.innerHTML = `<p>${t.text}</p><h4>- ${t.author}</h4>`;
+    colDiv.appendChild(div);
+    colIndex = (colIndex + 1) % testimonials.length;
+  }
+  setInterval(showColumnTestimonial, 5000);
+  showColumnTestimonial();
+</script></body>
+</html>
